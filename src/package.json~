@@ -1,0 +1,20 @@
+{
+  "name": "learnshortcuts",
+  "version": "0.0.0",
+  "description": "Shortcut excercises",
+  "main": "index.js",
+  "scripts": {
+    "test": "add gulp thing later"
+  },
+  "repository": {
+    "type": "git",
+    "url": "add git repository later"
+  },
+  "keywords": [
+    "add",
+    "keywords",
+    "later"
+  ],
+  "author": "Skuli Johannsson",
+  "license": "BSD-2-Clause"
+}

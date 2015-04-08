@@ -1,0 +1,21 @@
+C+1 through C+8	Go to the tab at the specified position in the window
+C+Tab			Go to the next tab in the window
+C+S+Tab			Go to the previous tab in the window
+C+W, C+F4				Close current tab
+M+T				Go to the next window you have open
+M+S+T			Go to the previous window you have open
+C+S+T			Reopen the last tab you've closed. Google Chrome remembers the last 10 tabs you've closed.
+#Close other tabs	Rightclick on tab
+C+T   		New Tab
+Alt+Enter ( after typing an url)	Opens the URL in a new tab.
+C+Enter	    surround with www..com and go
+C+L|M+D	    Address bar
+C+E			Search
+S+Space|Page Up		Scroll up a frame
+C+S+G				Find previous match within page
+C+H					Browsing history
+C+J					Download history
+C+D					Bookmark
+C+S+Del				Open clear browser history window
+C+U					Open source code
+C+O					Open file
