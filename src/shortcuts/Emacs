@@ -1,1 +1,6 @@
-Switch mode	M-x n
+M-x n	Switch mode	
+C-SPC	Set mark to the current location
+C-x C-x	Swap point and mark
+C-u C-SPC	Cycle through mark ring
+C-x h	Make region contain the entire buffer ("Select all")
+M-h	Make region contain the current paragraph
