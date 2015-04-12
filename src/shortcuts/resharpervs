@@ -1,3 +1,22 @@
+#1
+Alt+Up	Move line up
+Alt+Down	Move line down
+Ctrl+Shift+Enter	New line under
+Ctrl+]		Go to matching }
+Ctrl+k c		Comment line
+Ctrl+k u		Uncomment line
+Ctrl+d		Copy and paste line 
+Ctrl+R R	Rename
+Ctrl+R M	Extract method
+
+#2
+F12			Go to definition
+Ctrl+F12	Go to declaration
+Alt+F12		Peek definition
+Ctrl+-		Go back
+Ctrl+Shift+-	Go forward
+
+#3
 Ctrl+left	Go further to left
 Ctrl+Down	Move screen up
 Ctrl+Shift+Down	Show next occurrence of variable
@@ -5,24 +24,12 @@ Ctrl+Shift+Right	Extended mark left
 Home		Beginning of line
 F5			Start debugging
 Shift+F5	Stop debugging
-
-Ctrl+Shift+Enter	New line under
-Ctrl+kc		Comment line
-Ctrl+ku		Uncomment line
-Ctrl+d		Copy and paste line 
 Ctrl++		Show options to fix error
 
+#4
 Alt+Up		Go to previous member/tag
 Ctrl+[		Go to containing declaration
-Ctrl+]		Go to matching }
 Ctrl+Tab	Go to tab
 Ctrl+Shft+Tab	Go to previous tab
 Ctrl+F4		Close current window
-Ctrl+R,R	Rename
-F12			Go to definition
-Ctrl+F12	Go to declaration
-Alt+F12		Peek definition
-Ctrl+-		Go back
-Ctrl+Shift+-	Go forward
 Ctrl+g		Go to line number
-Ctrl+R,M	Extract method

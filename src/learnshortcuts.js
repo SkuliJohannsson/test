@@ -5,6 +5,7 @@ var op=qs.parse(location.search.substr(1));
 op.testFile = op.f||'Emacs';
 op.maxLines = op.ml||16;
 op.learnMode = (_.has(op, 'lm'))||false;
+op.debug = (_.has(op, 'd'))||false;
 $.get("shortcuts/"+op.testFile, function(data){
 	setTitle(op.testFile);
 	var chapters=_.chain(data.split(/\r?\n\s*\r?\n/))
@@ -38,7 +39,7 @@ $.get("shortcuts/"+op.testFile, function(data){
 			print("Try '"+chapters[i].title+"'? ( y[es] or q[uit] )");
 		}
 		
-		Mousetrap.bind('y', function(event){ 
+		Mousetrap.bind(['y', 'enter'], function(event){ 
 			event.preventDefault();
 			Mousetrap.reset();
 			testChapter(chapters[i], function(){testExcerzise(chapters, next(i))});
@@ -49,7 +50,7 @@ $.get("shortcuts/"+op.testFile, function(data){
 			Mousetrap.reset();
 			testExcerzise(chapters, next(i));
 		});
-		Mousetrap.bind(['r', 'enter'], function(event){ 
+		Mousetrap.bind('r', function(event){ 
 			event.preventDefault();
 			Mousetrap.reset();
 			testChapter(chapters[prev(i)], function(){testExcerzise(chapters, i)});
@@ -87,7 +88,9 @@ $.get("shortcuts/"+op.testFile, function(data){
 		return keys.toLowerCase()
 		.replace(/c[-+]/g,"ctrl+")
 		.replace(/m[-+]/g,"alt+")
+		.replace(/shft[-+]/g,"shift+")
 		.replace(/s[-+]/g,"shift+")
+		.replace(/w[-+]/g,"mod+")//On windows: goes to ctrl unfortunately
 		.replace(/spc/g,"space")
 		.split(", ");
 	}
@@ -98,10 +101,10 @@ $.get("shortcuts/"+op.testFile, function(data){
 		{
 			if(op.learnMode) print(current.message+' [ '+current.keys+' ]');
 			else print(current.message);
-			
+			if(op.debug) console.log(toMousetrapFormat(current.keys));
 			Mousetrap.bind(toMousetrapFormat(current.keys), function(event, combo){ 
-				printSuccess(current.keys);
 				event.preventDefault();
+				printSuccess(current.keys);
 				Mousetrap.reset();
 				testKeyMaps(data, callback);
 			});
