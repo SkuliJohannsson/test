@@ -1,2 +1,2 @@
-start http://localhost:8080
-node server
+start http://localhost:9966
+beefy --live

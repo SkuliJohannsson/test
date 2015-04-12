@@ -5,3 +5,8 @@
 .main .fail{
 	color: red;
 }
+
+.main .line:not(:first-child) 
+{
+    opacity: 0.5;
+}
