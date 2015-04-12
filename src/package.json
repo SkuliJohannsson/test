@@ -4,7 +4,9 @@
   "description": "Shortcut excercises",
   "main": "learnshortcuts.js",
   "scripts": {
-    "test": "add gulp thing later"
+    "test": "add gulp thing later",
+    "build": "browserify learnshortcuts.js --debug --verbose | exorcist build/learnshortcuts.js.map > build/learnshortcuts.js",
+    "watch": "watchify learnshortcuts.js --verbose -o build/learnshortcuts.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,8 @@
     "later"
   ],
   "author": "Skuli Johannsson",
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "qs": "^2.4.1"
+  }
 }

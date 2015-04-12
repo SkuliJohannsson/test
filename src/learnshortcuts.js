@@ -1,7 +1,12 @@
+var qs=require('qs');
+
 $(function(){
-var testFile = 'Emacs';
-$.get("shortcuts/"+testFile, function(data){
-	setTitle(testFile);
+var op=qs.parse(location.search.substr(1));
+op.testFile = op.f||'Emacs';
+op.maxLines = op.ml||16;
+op.learnMode = (_.has(op, 'lm'))||false;
+$.get("shortcuts/"+op.testFile, function(data){
+	setTitle(op.testFile);
 	var chapters=_.chain(data.split(/\r?\n\s*\r?\n/))
 	.map(function(chapter){ 
 		var arr=chapter.split(/\r?\n/);
@@ -14,7 +19,7 @@ $.get("shortcuts/"+testFile, function(data){
 		}
 		else{
 			return {
-				title: testFile,
+				title: op.testFile,
 				lines: arr
 			};
 		}
@@ -25,12 +30,18 @@ $.get("shortcuts/"+testFile, function(data){
 
 	function testExcerzise(chapters, i)
 	{	
-		print("Test chapter "+chapters[i].title+'? ( y[es], n[ext], r[epeate last] or q[uit] )');
+		if(chapters.length>1)
+		{
+			print("Test chapter '"+chapters[i].title+"'? ( y[es], n[ext], r[epeate last] or q[uit] )");
+		}
+		else{
+			print("Try '"+chapters[i].title+"'? ( y[es] or q[uit] )");
+		}
 		
 		Mousetrap.bind('y', function(event){ 
 			event.preventDefault();
 			Mousetrap.reset();
-			testChapter(chapters[i], function(){inc(); testExcerzise(chapters, next(i))});
+			testChapter(chapters[i], function(){testExcerzise(chapters, next(i))});
 		});
 		
 		Mousetrap.bind('n', function(event){ 
@@ -47,8 +58,7 @@ $.get("shortcuts/"+testFile, function(data){
 			event.preventDefault();
 			Mousetrap.reset();
 			print('Excerzise done');
-		});
-		
+		});		
 		function next(i){ 
 			return (i+1)%chapters.length;
 		}
@@ -57,18 +67,18 @@ $.get("shortcuts/"+testFile, function(data){
 			if(x<0) x=chapters.length+x;
 			return x;
 		}
-		
 	}
 	
 	function testChapter(chapter, callback)
 	{
+		print("Chapter: "+chapter.title);
 		var lines = _.chain(chapter.lines)
 		.filter(function(line){ return !/^[ \t]*#/.test(line);})
 		.map(function(line){ 
 			var pars = line.split(/\t+/);		
 			return {keys:pars[0], message:pars[1].trim()}; 
 		})
-		.reverse()
+		.shuffle()
 		.value();
 		
 		testKeyMaps(lines, callback);
@@ -86,7 +96,8 @@ $.get("shortcuts/"+testFile, function(data){
 		var current = data.pop();
 		if(current)
 		{
-			print(current.message);
+			if(op.learnMode) print(current.message+' [ '+current.keys+' ]');
+			else print(current.message);
 			
 			Mousetrap.bind(toMousetrapFormat(current.keys), function(event, combo){ 
 				printSuccess(current.keys);
@@ -104,8 +115,10 @@ $.get("shortcuts/"+testFile, function(data){
 		}
 		else
 		{
-			print("chapter done");
-			if(callback)	callback();
+			if(callback)	
+			{
+				callback();
+			}
 		}
 	}
 	
@@ -114,6 +127,7 @@ $.get("shortcuts/"+testFile, function(data){
 	}
 	function print(message){
 		$('.main .lines').prepend("<div class='line'>"+message+"</div>");
+		$('.main .line:gt('+op.maxLines+')').remove();
 	}
 	
 	function printFail(message){

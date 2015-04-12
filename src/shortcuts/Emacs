@@ -1,4 +1,3 @@
-#One
 M-x n	Switch mode
 C-SPC	Set mark to the current location
 C-x C-x	Swap point and mark
