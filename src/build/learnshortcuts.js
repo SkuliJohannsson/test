@@ -85,7 +85,9 @@ $.get("shortcuts/"+op.testFile, function(data){
 	function testChapter(chapter, callback)
 	{
 		print("Chapter: "+chapter.title);
-		var lines = _.chain(chapter.lines)
+		
+		data={};
+		data.lines = _.chain(chapter.lines)
 		.filter(function(line){ return !/^[ \t]*#/.test(line);})
 		.map(function(line){ 
 			var pars = line.split(/\t+/);	
@@ -96,7 +98,9 @@ $.get("shortcuts/"+op.testFile, function(data){
 		.shuffle()
 		.value();
 		
-		testKeyMaps(lines, callback);
+		data.title=chapter.title;
+		timer.time(data.title);
+		testKeyMaps(data, callback);
 	}
 	function toMousetrapFormat(keys){
 		return keys.toLowerCase()
@@ -110,7 +114,7 @@ $.get("shortcuts/"+op.testFile, function(data){
 	}
 	
 	function testKeyMaps(data, callback){
-		var current = data.pop();
+		var current = data.lines.pop();
 		if(current)
 		{
 			if(op.learnMode) print(current.message+' [ '+current.keys+' ]');
@@ -120,7 +124,7 @@ $.get("shortcuts/"+op.testFile, function(data){
 			timer.time(combo);
 			Mousetrap.bind(combo, function(event){ 
 				event.preventDefault();
-				printSuccess(current.keys, timer.timeEnd(combo));
+				printSuccess(current.keys+'( '+formatTime(timer.timeEnd(combo))+' )');
 				Mousetrap.reset();
 				testKeyMaps(data, callback);
 			});
@@ -134,6 +138,7 @@ $.get("shortcuts/"+op.testFile, function(data){
 		}
 		else
 		{
+			print("'"+data.title+"' finished in "+formatTime(timer.timeEnd(data.title)));
 			if(callback)	
 			{
 				callback();
@@ -142,7 +147,7 @@ $.get("shortcuts/"+op.testFile, function(data){
 	}
 	
 	function setTitle(title){
-		$('title').text(title);
+		$('title').html(title);
 	}
 	function print(message){
 		$('.main .lines').prepend("<div class='line'>"+message+"</div>");
@@ -150,15 +155,15 @@ $.get("shortcuts/"+op.testFile, function(data){
 	}
 	
 	function printFail(message){
-		$( ".main .line" ).first().addClass( "fail" ).text(message);
+		$( ".main .line" ).first().addClass( "fail" ).html(message);
 	}
 	
-	function printSuccess(message, ms){
-		
-		var line = $( ".main .line" ).first().addClass( "success" ).text(message);
-		if(ms){
-			line.append(" <span class='time'>( "+(ms/1000).toFixed(1)+"sec )</span>");
-		}
+	function printSuccess(message){
+		$( ".main .line" ).first().addClass( "success" ).html(message);
+	}
+	
+	function formatTime(time){
+		return time?"<span class='time'>"+(time/1000).toFixed(1)+"sec</span>":"";
 	}
 });
 });
