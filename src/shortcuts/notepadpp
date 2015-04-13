@@ -1,2 +1,6 @@
-c+s+Up	Move Current Line Up
-c+s+Down	Move Current Line Down
+c+s+Up			Move Current Line Up
+c+s+Down		Move Current Line Down
+c+d				Duplicate Current line
+c+t				[l1,l|0]=>[l0,l|1]: Switch current line with line above, without moving cursor ( more than necessery )
+c+n				New tab
+c+w				Close tab

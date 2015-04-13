@@ -1,13 +1,27 @@
-#1
-Alt+Up	Move line up
-Alt+Down	Move line down
+#Favorites
+Ctrl+]		Go to matching { or }
+Ctrl+shift+]	mark to matching { or }
+Ctrl+d		Copy and paste line ( and move point down to newly pasted line )
+Ctrl+R Ctrl+R	Rename
+ctrl+shft+alt+down	move line or region down ( tries to make sense programmatically, doesnt move out of the function and so on. )
+ctrl+shft+alt+left	move parameter the pointer is in to left	( f( x0, x|1 ) => f( x|1, x0 )
+ctrl+alt+right	Extend region intelligengly, preferring to extend right if possible ( first extends parts of name, then name, then parts of line, then line, and so on)
+Ctrl+Shift+Backspace	ReSharper | Go To | Last Edit Location 
+#Ctrl+-	jumps to last cursor position
+#Ctrl+shift-	jumps to next cursor position
+Ctrl+F3	find the next occurrence of whatever word your cursor is inside of
+
+#Favorites 2
+Ctrl+shift+] Ctrl+shift+]	mark to matching { or } and set point back to where you began.
 Ctrl+Shift+Enter	New line under
-Ctrl+]		Go to matching }
-Ctrl+k c		Comment line
-Ctrl+k u		Uncomment line
-Ctrl+d		Copy and paste line 
-Ctrl+R R	Rename
-Ctrl+R M	Extract method
+Ctrl+R Ctrl+M	Extract method
+Ctrl+[		Go to containing declaration
+
+#1
+Alt+Up	Go to previous member in class ( or to member definition line of the one you are in )
+Alt+Down	Go to next member in class 
+Ctrl+k Ctrl+c		Comment line
+Ctrl+k Ctrl+u		Uncomment line
 
 #2
 F12			Go to definition
@@ -25,11 +39,15 @@ Home		Beginning of line
 F5			Start debugging
 Shift+F5	Stop debugging
 Ctrl++		Show options to fix error
-
 #4
-Alt+Up		Go to previous member/tag
-Ctrl+[		Go to containing declaration
 Ctrl+Tab	Go to tab
 Ctrl+Shft+Tab	Go to previous tab
 Ctrl+F4		Close current window
 Ctrl+g		Go to line number
+
+#Test
+-	-
+ctrl+-	ctrl+-
+Ctrl+shift+-	jumps to next cursor position
+Ctrl+shift+_	jumps to next cursor position
+Ctrl+F3	find the next occurrence of whatever word your cursor is inside of

@@ -1,11 +1,22 @@
 var qs=require('qs');
+var timer=require('./timer');
 
 $(function(){
 var op=qs.parse(location.search.substr(1));
-op.testFile = op.f||'Emacs';
+op.testFile = op.f||'resharpervs';
 op.maxLines = op.ml||16;
 op.learnMode = (_.has(op, 'lm'))||false;
 op.debug = (_.has(op, 'd'))||false;
+op.ShortDescriptions=(_.has(op, 'sd'))||false;
+
+if(op.debug)
+{
+	$('body').bind('keypress', function(e) {
+		console.dir(e);
+		console.dir(_.pick(e, 'key', 'ctrlKey', 'altKey', 'shiftKey', 'metaKey'));
+	});
+}
+
 $.get("shortcuts/"+op.testFile, function(data){
 	setTitle(op.testFile);
 	var chapters=_.chain(data.split(/\r?\n\s*\r?\n/))
@@ -76,8 +87,10 @@ $.get("shortcuts/"+op.testFile, function(data){
 		var lines = _.chain(chapter.lines)
 		.filter(function(line){ return !/^[ \t]*#/.test(line);})
 		.map(function(line){ 
-			var pars = line.split(/\t+/);		
-			return {keys:pars[0], message:pars[1].trim()}; 
+			var pars = line.split(/\t+/);	
+			var messageIndex=pars.length-1;
+			if(!op.ShortDescriptions) messageIndex=Math.min(messageIndex, 1);
+			return {keys:pars[0], message:pars[messageIndex].trim()}; 
 		})
 		.shuffle()
 		.value();
@@ -102,9 +115,11 @@ $.get("shortcuts/"+op.testFile, function(data){
 			if(op.learnMode) print(current.message+' [ '+current.keys+' ]');
 			else print(current.message);
 			if(op.debug) console.log(toMousetrapFormat(current.keys));
-			Mousetrap.bind(toMousetrapFormat(current.keys), function(event, combo){ 
+			var combo=toMousetrapFormat(current.keys);
+			timer.time(combo);
+			Mousetrap.bind(combo, function(event){ 
 				event.preventDefault();
-				printSuccess(current.keys);
+				printSuccess(current.keys, timer.timeEnd(combo));
 				Mousetrap.reset();
 				testKeyMaps(data, callback);
 			});
@@ -137,8 +152,12 @@ $.get("shortcuts/"+op.testFile, function(data){
 		$( ".main .line" ).first().addClass( "fail" ).text(message);
 	}
 	
-	function printSuccess(message){
-		$( ".main .line" ).first().addClass( "success" ).text(message);
+	function printSuccess(message, ms){
+		
+		var line = $( ".main .line" ).first().addClass( "success" ).text(message);
+		if(ms){
+			line.append(" <span class='time'>( "+(ms/1000).toFixed(1)+"sec )</span>");
+		}
 	}
 });
 });
