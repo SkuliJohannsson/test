@@ -1,2 +1,15 @@
 M+Shift	Switch language
 w+Enter	Open with
+f2	rename selected file
+ctrl+shift+esc	open task manager
+alt+f4	close
+ctrl+f4	close tab
+win+e	open explorer
+win+r	open run
+win+up	maximize current window
+win+down	shrink current window ( or minimize )
+shift+mouseright+(copy as path)
+Alt+PrintScreen	snapshot of the current Window only
+win+m	minimize all
+win+l	lock computer
+ctrl+backspace	delete whole word

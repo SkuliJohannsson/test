@@ -8,6 +8,7 @@ op.maxLines = op.ml||16;
 op.learnMode = (_.has(op, 'lm'))||false;
 op.debug = (_.has(op, 'd'))||false;
 op.ShortDescriptions=(_.has(op, 'sd'))||false;
+op.AutoRepeat=(_.has(op, 'ar'))||false;
 
 if(op.debug)
 {
@@ -42,6 +43,15 @@ $.get("shortcuts/"+op.testFile, function(data){
 
 	function testExcerzise(chapters, i)
 	{	
+		if(op.AutoRepeat&&!isFirst()&&this.RepeatMode){
+			
+			//repeat and return.
+			repeat();
+			return;
+		} 
+		
+		this.RepeatMode=false;
+		
 		if(chapters.length>1)
 		{
 			print("Test chapter '"+chapters[i].title+"'? ( y[es], n[ext], r[epeate last] or q[uit] )");
@@ -53,6 +63,8 @@ $.get("shortcuts/"+op.testFile, function(data){
 		Mousetrap.bind(['y', 'enter'], function(event){ 
 			event.preventDefault();
 			Mousetrap.reset();
+			
+			this.RepeatMode = true;
 			testChapter(chapters[i], function(){testExcerzise(chapters, next(i))});
 		});
 		
@@ -61,10 +73,11 @@ $.get("shortcuts/"+op.testFile, function(data){
 			Mousetrap.reset();
 			testExcerzise(chapters, next(i));
 		});
-		Mousetrap.bind('r', function(event){ 
+		
+		Mousetrap.bind('r', function(event){
 			event.preventDefault();
 			Mousetrap.reset();
-			testChapter(chapters[prev(i)], function(){testExcerzise(chapters, i)});
+			repeat();
 		});
 		Mousetrap.bind('q', function(event){ 
 			event.preventDefault();
@@ -78,6 +91,20 @@ $.get("shortcuts/"+op.testFile, function(data){
 			var x=(i-1)%chapters.length;
 			if(x<0) x=chapters.length+x;
 			return x;
+		}
+		
+		function repeat(){ 
+		
+			this.RepeatMode = true;
+			testChapter(chapters[prev(i)], function(){testExcerzise(chapters, i)});
+		}
+		
+		function isFirst(){
+			if(this.undefinedIfFirstCall===undefined){ 
+				this.undefinedIfFirstCall={}; 
+				return true;
+			}
+			return false;
 		}
 	}
 	
