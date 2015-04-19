@@ -6,6 +6,14 @@ git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/SkuliJohannsson/test.git
 git push -u origin master
+
+```
+# Run
+```
+sudo npm install browserify -g
+sudo npm install watchify -g
+sudo npm install beefy -g
+beefy --live
 ```
 
 # Addon to change browser shortcuts in firefox

@@ -1,0 +1,12 @@
+#Move
+a
+b
+c
+a		a
+#sacha Cua Basics
+i		insert mode
+esc		command mode
+: v i m t u t o r	vimtutor
+:w 		write/save file
+:q		quit
+:q!		really quit

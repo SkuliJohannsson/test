@@ -6,7 +6,9 @@
   "scripts": {
     "test": "add gulp thing later",
     "build": "browserify learnshortcuts.js --debug --verbose | exorcist build/learnshortcuts.js.map > build/learnshortcuts.js",
-    "watch": "watchify learnshortcuts.js --verbose -o build/learnshortcuts.js"
+    "watch": "watchify learnshortcuts.js --verbose -o build/learnshortcuts.js",
+    "runNotWorkingOnHomeComputer": "firefox 'http://localhost:9966?lm&f=resharpervs&d&sd'&&beefy --live",
+    "run": "firefox 'http://localhost:9966?lm&f=resharpervs&d&sd'&&node server"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   "author": "Skuli Johannsson",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "node-speak": "0.0.2",
     "qs": "^2.4.1"
   }
 }

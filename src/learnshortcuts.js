@@ -1,5 +1,6 @@
 var qs=require('qs');
 var timer=require('./timer');
+var speak = require("node-speak");
 
 $(function(){
 var op=qs.parse(location.search.substr(1));
@@ -9,6 +10,7 @@ op.learnMode = (_.has(op, 'lm'))||false;
 op.debug = (_.has(op, 'd'))||false;
 op.ShortDescriptions=(_.has(op, 'sd'))||false;
 op.AutoRepeat=(_.has(op, 'ar'))||false;
+op.speak=(_.has(op, 'a'))||false;
 
 if(op.debug)
 {
@@ -145,6 +147,9 @@ $.get("shortcuts/"+op.testFile, function(data){
 		{
 			if(op.learnMode) print(current.message+' [ '+current.keys+' ]');
 			else print(current.message);
+
+		    if(op.speak) speak(current.message);
+
 			if(op.debug) console.log(toMousetrapFormat(current.keys));
 			var combo=toMousetrapFormat(current.keys);
 			timer.time(combo);

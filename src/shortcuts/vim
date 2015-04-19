@@ -1,0 +1,14 @@
+#Move
+j	v (down)
+k	^ (up)
+h	< (left)
+l	> (right)
+
+#sacha Cua Basics
+i		insert mode
+esc		command mode
+: w		write/save file
+: q		quit
+shft+; q shft+1		really quit
+
+#And remember vimtutor
