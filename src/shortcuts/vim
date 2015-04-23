@@ -16,7 +16,7 @@ o	  	open empty line below and go to insert mode
 
 #Vimtutor
 x		delete char
-a		insert after cursor
+a		insert after cursors
 y		yank
 shift+a		append to line
 i		insert before cursor

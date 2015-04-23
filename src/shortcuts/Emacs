@@ -33,6 +33,7 @@ M-h		mark-paragraph
 M-x o		other-window
 C-x C-v RET	reload buffer
 
+
 #Buffers
 C-x k		kill-buffer
 C-x b		switch to buffer
