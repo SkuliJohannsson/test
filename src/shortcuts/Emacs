@@ -10,6 +10,14 @@ C-h C-h		help on help
 
 #Practical
 C-a C-k C-k C-y C-y	duplicate line
+C-g C-/	    		redo after undo	redo after undo ( first can be C-f as well and whatever really ) 
+M-% 			Query replace
+
+#M-% mode
+^    go to previous replace
+n    go to next replace
+,    replace current instance
+return	     exit mode
 
 #Basics
 C-a C-k		kill line

@@ -1,7 +1,8 @@
 var qs=require('qs');
 var $ =require('jquery');
 var _ =require('underscore');
-var Mousetrap =require('mousetrap');
+var ck =require('combokeys');
+ck = new ck(document.documentElement);
 var timer=require('./timer');
 var speak = require("node-speak");
 
@@ -14,7 +15,6 @@ op.debug = (_.has(op, 'd'))||false;
 op.ShortDescriptions=(_.has(op, 'sd'))||false;
 op.AutoRepeat=(_.has(op, 'ar'))||false;
 op.speak=(_.has(op, 'a'))||false;
-op.autoRepeatWait=(_.has(op, 'arw'))||0;
 
 if(op.debug)
 {
@@ -52,8 +52,8 @@ $.get("shortcuts/"+op.testFile, function(data){
 	{	
 		if(op.AutoRepeat&&!isFirst()&&this.RepeatMode){
 			
-			//repeat and return. Give us some time to see the results
-			setTimeout(repeat, op.autoRepeatWait);
+			//repeat and return.
+			repeat();
 			return;
 		} 
 		
@@ -69,30 +69,30 @@ $.get("shortcuts/"+op.testFile, function(data){
 			"'? ( y[es] or q[uit] )");
 		}
 		
-		Mousetrap.bind(['y', 'enter'], function(event){ 
+		ck.bind(['y', 'enter'], function(event){ 
 			event.preventDefault();
-			Mousetrap.reset();
+			ck.reset();
 			
-			this.RepeatMode = true;
+			this.RepeatMode = true; 
 			testChapter(chapters[i], function(){
 				testExcerzise(chapters, next(i))
 			});
 		});
 		
-		Mousetrap.bind('n', function(event){ 
+		ck.bind('n', function(event){ 
 			event.preventDefault();
-			Mousetrap.reset();
+			ck.reset();
 			testExcerzise(chapters, next(i));
 		});
 		
-		Mousetrap.bind('r', function(event){
+		ck.bind('r', function(event){
 			event.preventDefault();
-			Mousetrap.reset();
+			ck.reset();
 			repeat();
 		});
-		Mousetrap.bind('q', function(event){ 
+		ck.bind('q', function(event){ 
 			event.preventDefault();
-			Mousetrap.reset();
+			ck.reset();
 			print('Excerzise done');
 		});		
 		function next(i){ 
@@ -146,7 +146,7 @@ $.get("shortcuts/"+op.testFile, function(data){
 		timer.time(data.title);
 		testKeyMaps(data, callback);
 	}
-	function toMousetrapFormat(keys){
+	function toCombokeysFormat(keys){
 		return keys.toLowerCase()
 		.replace(/c[-+]/g,"ctrl+")
 		.replace(/m[-+]/g,"alt+")
@@ -169,20 +169,20 @@ $.get("shortcuts/"+op.testFile, function(data){
 		    if(op.speak) speak(current.message);
 
 			if(op.debug) 
-				console.log(toMousetrapFormat(current.keys));
-			var combo=toMousetrapFormat(current.keys);
+				console.log(toCombokeysFormat(current.keys));
+			var combo=toCombokeysFormat(current.keys);
 			timer.time(combo);
-			Mousetrap.bind(combo, function(event){ 
+			ck.bind(combo, function(event){ 
 				event.preventDefault();
 				printSuccess(current.keys+'( '+formatTime(timer.timeEnd(combo))+' )');
-				Mousetrap.reset();
+				ck.reset();
 				testKeyMaps(data, callback);
 			});
 						
-			Mousetrap.bind('enter', function(event){ 
+			ck.bind('enter', function(event){ 
 				event.preventDefault();
 				printFail(current.keys);
-				Mousetrap.reset();
+				ck.reset();
 				testKeyMaps(data, callback);
 			});
 		}
@@ -222,3 +222,5 @@ $.get("shortcuts/"+op.testFile, function(data){
 	}
 });
 });
+
+//  LocalWords:  ck
