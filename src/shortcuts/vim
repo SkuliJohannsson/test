@@ -6,9 +6,57 @@ l	> (right)
 
 #sacha Cua Basics
 i		insert mode
-esc		command mode
-: w		write/save file
+e s c		command mode
+: v		visual mode
+: w		write to file
 : q		quit
 shft+; q shft+1		really quit
+shift+; w q		write to file and quit
+o	  	open empty line below and go to insert mode
+
+#Vimtutor
+x		delete char
+a		insert after cursors
+y		yank
+shift+a		append to line
+i		insert before cursor
+shift+a		append to line
+d w		delete to start of next word
+d e		delete to end of current word
+d $		delete to end of line
+$ 		to end of line
+w		to start of next word
+e		to end of current word
+3 w		to 3rd word (beginning)
+0 		to beginning of line
+shift+a		append line
+d d		delete line
+u 		undo
+shift+u		undo line changes
+ctrl+o		previous location
+ctrl+i		next location
+/ x		search for x
+? x		search for x backwards
+n 		next search forward
+shift+n		previous search backwards
+p    	  	paste last del
+r a		replace char with 'a'
+c e		delete word to end and put in insert mode
+ctrl+g		show location and status
+g g		start of file
+shift+g		end of file
+3 shift+g	goto line 3
+% 		goto mathcin { [ or (
+shift+; s / a / b / g	replace first a with b in line
+shift+; !     	execute external command
+ctrl+d		show possible commands
+ctrl+w ctrl+w	switch window
+c c, shift+s	change current line
+shift+]		next paragraph
+
+#HELP
+shift+; h	help
+ctrl+]		open section
+ctrl+t, ctrl+0	go back
 
 #And remember vimtutor

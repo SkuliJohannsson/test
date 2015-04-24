@@ -17,7 +17,8 @@ if(op.debug)
 {
 	$('body').bind('keypress', function(e) {
 		console.dir(e);
-		console.dir(_.pick(e, 'key', 'ctrlKey', 'altKey', 'shiftKey', 'metaKey'));
+		console.dir(_.pick(e, 'key', 'ctrlKey',
+		'altKey', 'shiftKey', 'metaKey'));
 	});
 }
 
@@ -57,10 +58,12 @@ $.get("shortcuts/"+op.testFile, function(data){
 		
 		if(chapters.length>1)
 		{
-			print("Test chapter '"+chapters[i].title+"'? ( y[es], n[ext], r[epeate last] or q[uit] )");
+			print("Test chapter '"+chapters[i].title+
+			"'? ( y[es], n[ext], r[epeate last] or q[uit] )");
 		}
 		else{
-			print("Try '"+chapters[i].title+"'? ( y[es] or q[uit] )");
+			print("Try '"+chapters[i].title+
+			"'? ( y[es] or q[uit] )");
 		}
 		
 		Mousetrap.bind(['y', 'enter'], function(event){ 
@@ -68,7 +71,9 @@ $.get("shortcuts/"+op.testFile, function(data){
 			Mousetrap.reset();
 			
 			this.RepeatMode = true;
-			testChapter(chapters[i], function(){testExcerzise(chapters, next(i))});
+			testChapter(chapters[i], function(){
+				testExcerzise(chapters, next(i))
+			});
 		});
 		
 		Mousetrap.bind('n', function(event){ 
@@ -99,7 +104,9 @@ $.get("shortcuts/"+op.testFile, function(data){
 		function repeat(){ 
 		
 			this.RepeatMode = true;
-			testChapter(chapters[prev(i)], function(){testExcerzise(chapters, i)});
+			testChapter(chapters[prev(i)], function(){
+				testExcerzise(chapters, i)
+			});
 		}
 		
 		function isFirst(){
@@ -121,8 +128,13 @@ $.get("shortcuts/"+op.testFile, function(data){
 		.map(function(line){ 
 			var pars = line.split(/\t+/);	
 			var messageIndex=pars.length-1;
-			if(!op.ShortDescriptions) messageIndex=Math.min(messageIndex, 1);
-			return {keys:pars[0], message:pars[messageIndex].trim()}; 
+			if(!op.ShortDescriptions) 
+				messageIndex=Math.min(messageIndex, 1);
+			
+			return {
+				keys:pars[0], 
+				message:pars[messageIndex].trim()
+			}; 
 		})
 		.shuffle()
 		.value();
@@ -137,7 +149,8 @@ $.get("shortcuts/"+op.testFile, function(data){
 		.replace(/m[-+]/g,"alt+")
 		.replace(/shft[-+]/g,"shift+")
 		.replace(/s[-+]/g,"shift+")
-		.replace(/w[-+]/g,"mod+")//On windows: goes to ctrl unfortunately
+		//On windows: goes to ctrl unfortunately
+		.replace(/w[-+]/g,"mod+")
 		.replace(/spc/g,"space")
 		.split(", ");
 	}
@@ -146,12 +159,14 @@ $.get("shortcuts/"+op.testFile, function(data){
 		var current = data.lines.pop();
 		if(current)
 		{
-			if(op.learnMode) print(current.message+' [ '+current.keys+' ]');
+			if(op.learnMode) 
+				print(current.message+' [ '+current.keys+' ]');
 			else print(current.message);
 
 		    if(op.speak) speak(current.message);
 
-			if(op.debug) console.log(toMousetrapFormat(current.keys));
+			if(op.debug) 
+				console.log(toMousetrapFormat(current.keys));
 			var combo=toMousetrapFormat(current.keys);
 			timer.time(combo);
 			Mousetrap.bind(combo, function(event){ 
@@ -170,7 +185,8 @@ $.get("shortcuts/"+op.testFile, function(data){
 		}
 		else
 		{
-			print("'"+data.title+"' finished in "+formatTime(timer.timeEnd(data.title)));
+			print("'"+data.title+"' finished in "+
+				formatTime(timer.timeEnd(data.title)));
 			if(callback)	
 			{
 				callback();
@@ -182,7 +198,8 @@ $.get("shortcuts/"+op.testFile, function(data){
 		$('title').html(title);
 	}
 	function print(message){
-		$('.main .lines').prepend("<div class='line'>"+message+"</div>");
+		$('.main .lines')
+		.prepend("<div class='line'>"+message+"</div>");
 		$('.main .line:gt('+op.maxLines+')').remove();
 	}
 	
@@ -195,7 +212,10 @@ $.get("shortcuts/"+op.testFile, function(data){
 	}
 	
 	function formatTime(time){
-		return time?"<span class='time'>"+(time/1000).toFixed(1)+"sec</span>":"";
+		return time?
+			"<span class='time'>"+(time/1000).toFixed(1)+
+			"sec</span>":
+			"";
 	}
 });
 });
