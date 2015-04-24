@@ -3,7 +3,6 @@ C-h c		describe-key-briefly
 C-h k		describe-key
 C-h a		apropos-command
 C-h f		describe-function
-M-x f i n d - f u n c t i o n		find-function
 C-h v		describe-variable
 C-h i		info page
 C-h C-h		help on help
@@ -39,6 +38,7 @@ C-x b		switch to buffer
 C-x right	next-buffer
 
 #some shit
+M-x f i n d - f u n c t i o n		find-function
 M-x m	Switch mode
 C-SPC	Set mark to the current location
 C-x C-x	Swap point and mark

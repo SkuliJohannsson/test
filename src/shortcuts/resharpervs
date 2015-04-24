@@ -15,6 +15,27 @@ Ctrl+Shift+F1	Quick documentation ( shows you the type as an example )
 alt+pageup	code issue: go to previous 
 ctrl+E c	code cleanup
 
+#Next 10
+Ctrl+Shift+Down	Show next occurrence of variable
+shift+enter	add line above
+ctrl+shift+enter	add line below, move cursor there
+shift+alt+up	move region up
+Alt+down	Go to next member in class
+shift+f5 stop running
+f9				toggle breakpoint
+Ctrl+m ctrl+g	Toggle View file and controller action	Controller.Action=>View||View=>Controller
+Ctrl+c			copy line ( if nothing is selected )
+Ctrl+F3	Quick search for the word cursor is in
+ctrl+t			goto everything/type
+
+#symbol gotos
+ctrl+g 4	Goto line 4
+alt+f12		Peek definition
+shift+f12	find usages
+f12			goto definition
+Ctrl+f12	Go to declaration/implementation ( where the parameter is declared (int x = ...) or where function is implemented )
+ctrl+shft+alt+left	move parameter the pointer is in to left	( f( x0, x|1 ) => f( x|1, x0 )
+
 #Code help
 alt+shift+pageup	Go to prev error in solution
 ctrl+shift+,	Go to recent edits
@@ -23,18 +44,9 @@ ctrl+space		intellisense
 Ctrl+Alt+Insert	Create file from template
 Alt+Insert	Generate code
 
-#symbol gotos
-alt+f12		Peek definition
-shift+f12	find usages
-f12			goto definition
-Ctrl+f12	Go to declaration/implementation ( where the parameter is declared (int x = ...) or where function is implemented )
-
 #Editing 2
-shift+enter	add line above
-ctrl+shift+enter	add line below, move cursor there
 ctrl+l			cut line
 Shift+Delete	normal cut or cut entire line
-shift+alt+up	move region up
 
 #Bookmarks
 ctrl+`	All bookmarks
@@ -44,29 +56,21 @@ Ctrl+R Ctrl+R	Rename
 CTRL+R ctrl+V	Introduce variable
 ctrl+shift+t	goto file by name
 Ctrl+Shift+Backspace	ReSharper | Go To | Last Edit Location 
-Alt+down	Go to next function
 ctrl+[	Go to containing block ( function, class .. )
 
 #Favorites 3
 Ctrl+]		Go to matching { or }
 Ctrl+shift+]	mark to matching { or }
 ctrl+shft+alt+down	move line or region down ( tries to make sense programmatically, doesnt move out of the function and so on. )
-ctrl+shft+alt+left	move parameter the pointer is in to left	( f( x0, x|1 ) => f( x|1, x0 )
 #Ctrl+-	jumps to last cursor position
 #Ctrl+shift+-	jumps to next cursor position
-Ctrl+F3	Quick search for the word cursor is in
-Ctrl+Shift+Alt+B Ctrl+Shift+Alt+B	Go to implementation
 #Ctrl+F4		Close tab
 ctrl+alt+d	open todo explorer 
 
 #Debug
 f5	run in debug mode
-shift+f5 stop running
 ctrl+shift+b	build
-f9				toggle breakpoint
 
-#MVC 
-Ctrl+m ctrl+g	Toggle View file and controller action	Controller.Action=>View||View=>Controller
 
 #Favorites 2
 Ctrl+shift+] Ctrl+shift+]	mark to matching { or } and set point back to where you began.
@@ -90,7 +94,6 @@ Ctrl+Shift+-	Go forward
 #3
 Ctrl+left	Go further to left
 Ctrl+Down	Move screen up
-Ctrl+Shift+Down	Show next occurrence of variable
 Ctrl+Shift+Right	Extended mark left
 Home		Beginning of line
 F5			Start debugging
