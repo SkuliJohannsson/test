@@ -1,12 +1,15 @@
-#Help
+#Help 
 C-h c		describe-key-briefly
 C-h k		describe-key
 C-h a		apropos-command
 C-h f		describe-function
-M-x f i n d - f u n c t i o n		find-function
+#M-x f i n d - f u n c t i o n		find-function
 C-h v		describe-variable
 C-h i		info page
 C-h C-h		help on help
+
+#Practical
+C-a C-k C-k C-y C-y	duplicate line
 
 #Basics
 C-a C-k		kill line

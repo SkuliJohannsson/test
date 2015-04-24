@@ -1,4 +1,7 @@
 var qs=require('qs');
+var $ =require('jquery');
+var _ =require('underscore');
+var Mousetrap =require('mousetrap');
 var timer=require('./timer');
 var speak = require("node-speak");
 
