@@ -14,6 +14,7 @@ op.debug = (_.has(op, 'd'))||false;
 op.ShortDescriptions=(_.has(op, 'sd'))||false;
 op.AutoRepeat=(_.has(op, 'ar'))||false;
 op.speak=(_.has(op, 'a'))||false;
+op.autoRepeatWait=(_.has(op, 'arw'))||0;
 
 if(op.debug)
 {
@@ -51,8 +52,8 @@ $.get("shortcuts/"+op.testFile, function(data){
 	{	
 		if(op.AutoRepeat&&!isFirst()&&this.RepeatMode){
 			
-			//repeat and return.
-			repeat();
+			//repeat and return. Give us some time to see the results
+			setTimeout(repeat, op.autoRepeatWait);
 			return;
 		} 
 		
