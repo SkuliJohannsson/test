@@ -6,12 +6,18 @@ C-h f		describe-function
 #M-x f i n d - f u n c t i o n		find-function
 C-h v		describe-variable
 C-h i		info page
+C-h m		info about major mode
 C-h C-h		help on help
 
 #Practical
 C-a C-k C-k C-y C-y	duplicate line
 C-g C-/	    		redo after undo	redo after undo ( first can be C-f as well and whatever really ) 
-M-% 			Query replace
+M-%			Query replace
+C-x (, f3		Start recording macro
+C-x ), f4		stop recording the keyboard macro.
+C-x e, f4		run macro
+C-u 0 C-x e, C-u 0 f4	execute the macro until the end of the file is reached
+C-s   	     	   	search
 
 #M-% mode
 ^    go to previous replace
@@ -54,7 +60,7 @@ C-x right	next-buffer
 M-x m	Switch mode
 C-SPC	Set mark to the current location
 C-x C-x	Swap point and mark
-C-u C-SPC	Cycle through mark ring
+C-u C-SPC	Cycle through mark ring or go to last position
 C-x h	Make region contain the entire buffer ("Select all")
 M-h	Make region contain the current paragraph
 C-x r k	Kill region rectangle

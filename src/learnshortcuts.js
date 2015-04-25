@@ -1,21 +1,16 @@
-var qs=require('qs');
 var $ =require('jquery');
 var _ =require('underscore');
 var ck =require('combokeys');
 ck = new ck(document.documentElement);
-var timer=require('./timer');
 var speak = require("node-speak");
+  
+var timer=require('./timer');
+var op = require('./options');
+var f2j =  require('./fileFormat2Json');
 
 $(function(){
-var op=qs.parse(location.search.substr(1));
-op.testFile = op.f||'resharpervs';
-op.maxLines = op.ml||16;
-op.learnMode = (_.has(op, 'lm'))||false;
-op.debug = (_.has(op, 'd'))||false;
-op.ShortDescriptions=(_.has(op, 'sd'))||false;
-op.AutoRepeat=(_.has(op, 'ar'))||false;
-op.speak=(_.has(op, 'a'))||false;
 
+    
 if(op.debug)
 {
 	$('body').bind('keypress', function(e) {
@@ -27,24 +22,7 @@ if(op.debug)
 
 $.get("shortcuts/"+op.testFile, function(data){
 	setTitle(op.testFile);
-	var chapters=_.chain(data.split(/\r?\n\s*\r?\n/))
-	.map(function(chapter){ 
-		var arr=chapter.split(/\r?\n/);
-		if(/^[ \t]*#/.test(arr[0]))
-		{
-			return {
-				title: arr[0],
-				lines: _.rest(arr)
-			};
-		}
-		else{
-			return {
-				title: op.testFile,
-				lines: arr
-			};
-		}
-	})
-	.value();
+	var chapters=f2j.parse(data, op);
 	
 	testExcerzise(chapters, 0);
 
@@ -124,27 +102,8 @@ $.get("shortcuts/"+op.testFile, function(data){
 	function testChapter(chapter, callback)
 	{
 		print("Chapter: "+chapter.title);
-		
-		data={};
-		data.lines = _.chain(chapter.lines)
-		.filter(function(line){ return !/^[ \t]*#/.test(line);})
-		.map(function(line){ 
-			var pars = line.split(/\t+/);	
-			var messageIndex=pars.length-1;
-			if(!op.ShortDescriptions) 
-				messageIndex=Math.min(messageIndex, 1);
-			
-			return {
-				keys:pars[0], 
-				message:pars[messageIndex].trim()
-			}; 
-		})
-		.shuffle()
-		.value();
-		
-		data.title=chapter.title;
-		timer.time(data.title);
-		testKeyMaps(data, callback);
+		timer.time();
+		testKeyMaps(chapter, callback);
 	}
 	function toCombokeysFormat(keys){
 		return keys.toLowerCase()
@@ -155,12 +114,15 @@ $.get("shortcuts/"+op.testFile, function(data){
 		//On windows: goes to ctrl unfortunately
 		.replace(/w[-+]/g,"mod+")
 		.replace(/spc/g,"space")
+	    //some horrible hacks
+		.replace(/%/g,"shift+5")
 		.split(", ");
 	}
 	
 	function testKeyMaps(data, callback){
-		var current = data.lines.pop();
-		if(current)
+	    
+		var current = _.sample(data.lines);
+		if(timer.timeShow()<op.time)
 		{
 			if(op.learnMode) 
 				print(current.message+' [ '+current.keys+' ]');
@@ -189,7 +151,7 @@ $.get("shortcuts/"+op.testFile, function(data){
 		else
 		{
 			print("'"+data.title+"' finished in "+
-				formatTime(timer.timeEnd(data.title)));
+				formatTime(timer.timeEnd()));
 			if(callback)	
 			{
 				callback();
@@ -222,5 +184,3 @@ $.get("shortcuts/"+op.testFile, function(data){
 	}
 });
 });
-
-//  LocalWords:  ck

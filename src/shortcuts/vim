@@ -4,6 +4,14 @@ k	^ (up)
 h	< (left)
 l	> (right)
 
+#Common chars
+$
+%
+]
+/
+?
+0
+
 #sacha Cua Basics
 i		insert mode
 e s c		command mode

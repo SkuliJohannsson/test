@@ -1,0 +1,38 @@
+exports.parse(file){
+	var chapters =_.chain(data.split(/\r?\n\s*\r?\n/))
+	.map(function(chapter){ 
+	    var arr=chapter.split(/\r?\n/);
+		if(/^[ \t]*#/.test(arr[0]))
+		{
+			return {
+				title: arr[0],
+				lines: parseLines(_.rest(arr))
+			};
+		}
+		else{
+			return {
+				title: op.testFile,
+				lines: _parseLines(arr)
+			};
+		}
+	})
+	.value();
+}
+
+function _parseLines(lines){
+
+	 return _.chain(lines)
+	 .filter(function(line){ return !/^[ \t]*#/.test(line);})
+	.map(function(line){ 
+		var pars = line.split(/\t+/);	
+		var messageIndex=pars.length-1;
+		if(!op.ShortDescriptions) 
+			messageIndex=Math.min(messageIndex, 1);
+		
+		return {
+			keys:pars[0], 
+			message:pars[messageIndex].trim()
+		}; 
+	})
+	.value();
+}
