@@ -7,9 +7,11 @@ var speak = require("node-speak");
 var timer=require('./timer');
 var op = require('./options');
 var f2j =  require('./fileFormat2Json');
+var angular = require('angular');
+
+
 
 $(function(){
-
     
 if(op.debug)
 {

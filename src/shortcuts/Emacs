@@ -8,6 +8,7 @@ C-h v		describe-variable
 C-h i		info page
 C-h m		info about major mode
 C-h C-h		help on help
+#M-x menu-bar-mode   toggle menu
 
 #Practical
 C-a C-k C-k C-y C-y	duplicate line
@@ -18,12 +19,36 @@ C-x ), f4		stop recording the keyboard macro.
 C-x e, f4		run macro
 C-u 0 C-x e, C-u 0 f4	execute the macro until the end of the file is reached
 C-s   	     	   	search
+C-x C-f C-f             create new file when ido-mode is on
+C-x C-e                 Evaluate the Emacs Lisp expression before point.
+#M-x set-variable RET var RET value RET
+M-:                       eval lisp function in minibuffer
 
-#M-% mode
-^    go to previous replace
-n    go to next replace
-,    replace current instance
-return	     exit mode
+#ido-mode
+C-x C-f C-f                     create new file
+
+#ido-mode-file
+C-j     create file with what you have written
+C-d     enter Dired for this directory
+M-p     goto previous directory from history
+M-n     goto next directory from history
+M-k     remove the current directory from the history 
+M-b     goto buffer list
+M-m     create folder
+
+#Smex
+C-s     next match
+C-r     previous match
+C-h f   describe-function on the currently selected command. 
+M-.     goto source code
+C-h w   show key shortcut
+C-c C-e exportaenter add heading
+M-down  move section down
+M-left move section left
+tab     cycle visibility
+S-tab   globally cycle visibility
+S-left toggle TODO/DONE
+S-up    toggle priority 
 
 #Basics
 C-a C-k		kill line
@@ -48,7 +73,7 @@ C-x 1		delete-other-windows
 M-C-v		scroll-other-window
 M-h		mark-paragraph
 M-x o		other-window
-C-x C-v RET	reload buffer
+C-x C-v enter	reload buffer
 
 
 #Buffers
@@ -64,3 +89,4 @@ C-u C-SPC	Cycle through mark ring or go to last position
 C-x h	Make region contain the entire buffer ("Select all")
 M-h	Make region contain the current paragraph
 C-x r k	Kill region rectangle
+
