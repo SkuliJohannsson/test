@@ -16,6 +16,8 @@ alt+pageup	code issue: go to previous
 ctrl+E c	code cleanup
 
 #Next 10
+Ctrl+k Ctrl+u		Uncomment line
+Ctrl+k Ctrl+c		Comment line
 Ctrl+Shift+Down	Show next occurrence of variable
 shift+enter	add line above
 ctrl+shift+enter	add line below, move cursor there
@@ -81,8 +83,6 @@ Ctrl+[		Go to containing declaration
 #1
 Alt+Up	Go to previous member in class ( or to member definition line of the one you are in )
 Alt+Down	Go to next member in class 
-Ctrl+k Ctrl+c		Comment line
-Ctrl+k Ctrl+u		Uncomment line
 
 #2
 F12			Go to definition
