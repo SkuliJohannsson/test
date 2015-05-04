@@ -6,7 +6,7 @@ exports.parse=function(data, op){
     var chapters =_.chain(data.split(/\r?\n\s*\r?\n/))
 	.map(function(chapter){ 
 	    var arr=chapter.split(/\r?\n/);
-	    if(/^[ \t]*#/.test(arr[0]))
+	    if(/\s*#/.test(arr[0]))
 	    {
 		return {
 		    title: arr[0],
@@ -27,9 +27,9 @@ exports.parse=function(data, op){
 function _parseLines(lines){
 
     return _.chain(lines)
-	.filter(function(line){ return !/^[ \t]*#/.test(line);})
+	.filter(function(line){ return !/^\s*#/.test(line);})
 	.map(function(line){ 
-	    var pars = line.split(/\t+/);	
+	  var pars = line.trim().replace(/\s{2,}/g, '\t').split(/\t+/);	
 	    var messageIndex=pars.length-1;
 	    if(!_op.ShortDescriptions) 
 		messageIndex=Math.min(messageIndex, 1);

@@ -23,7 +23,7 @@ shift+enter	add line above
 ctrl+shift+enter	add line below, move cursor there
 shift+alt+up	move region up
 Alt+down	Go to next member in class
-shift+f5 stop running
+shift+f5        stop running
 f9				toggle breakpoint
 Ctrl+m ctrl+g	Toggle View file and controller action	Controller.Action=>View||View=>Controller
 Ctrl+c			copy line ( if nothing is selected )
