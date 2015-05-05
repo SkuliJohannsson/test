@@ -14,13 +14,14 @@ ctrl+shift+alt+v	open kill ring
 Ctrl+Shift+F1	Quick documentation ( shows you the type as an example )
 alt+pageup	code issue: go to previous 
 ctrl+E c	code cleanup
+f8              goto next error in error list (after compilation)
+ctrl+shift+enter	add line below, move cursor there
 
 #Next 10
 Ctrl+k Ctrl+u		Uncomment line
 Ctrl+k Ctrl+c		Comment line
 Ctrl+Shift+Down	Show next occurrence of variable
 shift+enter	add line above
-ctrl+shift+enter	add line below, move cursor there
 shift+alt+up	move region up
 Alt+down	Go to next member in class
 shift+f5        stop running
@@ -39,7 +40,7 @@ Ctrl+f12	Go to declaration/implementation ( where the parameter is declared (int
 ctrl+shft+alt+left	move parameter the pointer is in to left	( f( x0, x|1 ) => f( x|1, x0 )
 
 #Code help
-alt+shift+pageup	Go to prev error in solution
+alt+shift+pageup	Go to prev error in solution (a resharper magic, doesn't need compilation. But goes to some weir html errors and stuff like that)
 ctrl+shift+,	Go to recent edits
 ctrl+j			wider intellisense, doesn't remove possibilities as aggressively as ctrl+space	wider intellisense
 ctrl+space		intellisense
