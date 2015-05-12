@@ -3,24 +3,21 @@ var _ =require('underscore');
 var ck =require('combokeys');
 ck = new ck(document.documentElement);
 var speak = require("node-speak");
-  
+
 var timer=require('./timer');
 var op = require('./options');
 var f2j =  require('./fileFormat2Json');
 var angular = require('angular');
 
-
-
 $(function(){
-    
+ 
 if(op.debug)
 {
 	$('body').bind('keypress', function(e) {
-		console.dir(e);
-		console.dir(_.pick(e, 'key', 'ctrlKey',
-		'altKey', 'shiftKey', 'metaKey'));
+	  console.dir(e);
 	});
 }
+  
 
 $.get("shortcuts/"+op.testFile, function(data){
 	setTitle(op.testFile);
@@ -55,7 +52,7 @@ $.get("shortcuts/"+op.testFile, function(data){
 			
 			this.RepeatMode = true; 
 			testChapter(chapters[i], function(){
-				testExcerzise(chapters, next(i))
+			  testExcerzise(chapters, next(i));
 			});
 		});
 		
