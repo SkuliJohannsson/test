@@ -75,11 +75,18 @@ M-h		mark-paragraph
 M-x o		other-window
 C-x C-v enter	reload buffer
 
-
 #Buffers
 C-x k		kill-buffer
 C-x b		switch to buffer
 C-x right	next-buffer
+
+#Info
+p       previous
+m l s   info for ls
+C-h i   open info
+u       up
+n       next
+d       to top
 
 #some shit
 M-x m	Switch mode
