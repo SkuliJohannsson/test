@@ -3,6 +3,37 @@ j	v (down)
 k	^ (up)
 h	< (left)
 l	> (right)
+#b	here i|s => here |is
+#w	he|re is => here |is
+#e	he|re is => her|e is
+#ge	here i|s => her|e is
+
+
+
+
+
+
+
+
+
+#Windows
+ctrl-w s, :split	split window horizontally
+ctrl-w v, :vsplit	split window vertically
+:new			new splitted window
+:vertical new		new vertical splitted window
+ctrl-w ctrl-w	jump between windows
+ctlr-w +	increase size of a window
+3 ctrl-w _	set window height to 3
+ctrl-w l	move to the window on the right
+ctrl-w L	move the window to the far right
+:qall		quit vim. If any window contains unsaved changes, we jump to that window
+:wall		save all
+:qwall		save all and exit vim
+:all		open all files in the argument list
+ctrl-w q, :q	close current window
+ctrl-w o, :on	close all but this window
+gf		open file under cursor
+ctrl-w f	open file under cursor in a new window
 
 #Common chars
 $
@@ -11,6 +42,10 @@ $
 /
 ?
 0
+
+#Visual
+ctrl-v  to block visual mode
+Ia esc  after selecting in block mode, insert , in front of it (some sed magic is probably better here )
 
 #sacha Cua Basics
 i		insert mode
@@ -22,49 +57,25 @@ shft+; q shft+1		really quit
 shift+; w q		write to file and quit
 o	  	open empty line below and go to insert mode
 
-#Vimtutor
-x		delete char
-a		insert after cursors
-y		yank
-shift+a		append to line
-i		insert before cursor
-shift+a		append to line
-d w		delete to start of next word
-d e		delete to end of current word
-d $		delete to end of line
-$ 		to end of line
-w		to start of next word
-e		to end of current word
-3 w		to 3rd word (beginning)
-0 		to beginning of line
-shift+a		append line
-d d		delete line
-u 		undo
-shift+u		undo line changes
-ctrl+o		previous location
-ctrl+i		next location
-/ x		search for x
-? x		search for x backwards
-n 		next search forward
-shift+n		previous search backwards
-p    	  	paste last del
-r a		replace char with 'a'
-c e		delete word to end and put in insert mode
-ctrl+g		show location and status
-g g		start of file
-shift+g		end of file
-3 shift+g	goto line 3
-% 		goto mathcin { [ or (
-shift+; s / a / b / g	replace first a with b in line
-shift+; !     	execute external command
-ctrl+d		show possible commands
-ctrl+w ctrl+w	switch window
-c c, shift+s	change current line
-shift+]		next paragraph
 
 #HELP
 shift+; h	help
 ctrl+]		open section
-ctrl+t, ctrl+0	go back
-
+ctrl+t, ctrl+o, ``	go back
 #And remember vimtutor
+
+#Impress your friends
+d/get enter 	delete all to next occurrance of 'get' (global)
+3:		run Ex command on curent line and the next 2
+
+
+#Insert mode ( some work in command mode also )
+C-h     i_c_delete back one character
+C-w     i_c_delete back one word
+C-u     i_c_delete back to start of line
+C-[     i_c_switch to normal mode 
+C-o     i_switch to insert normal mode 
+C-S-v   i_c_paste from clipboard
+C-r 0   i_c_paste from yank register ( best for a few words)
+C-r =   i_c_insert calculation ( you have to type the calc ( vim script))
+

@@ -18,6 +18,6 @@ beefy --live
 
 # Addon to change browser shortcuts in firefox
 
-You need to go to settings to disable the shortcuts you want to.
+You need to go to settings to disable the shortcuts you want to. 
 
 https://addons.mozilla.org/en-US/firefox/addon/customizable-shortcuts/

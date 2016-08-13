@@ -1,0 +1,19 @@
+#Essential
+.	Repeat last change
+*	Search forward the word nearest to the cursor
+;	Repeat latest f, t, F or T
+,	Repeat latest f, t, F or T in opposite direction
+&	repeat last substitude regex
+n	repeat latest / or ?
+N	repeat latest / or ? in reverse
+daw      delete a word
+yyp      duplicate line down
+c-u     up half a screen
+c-d      down half a screen
+K        go to manual for word under cursor
+f,       To (inclusive) [count]'th , to the right.
+F,       To (inclusive) [count]'th , to the left.
+t,       Till (exclusive [count]'th , to the right.
+T,       Till (exclusive [count]'th , to the left.
+/x	 search for x
+?x	 search for x backwards

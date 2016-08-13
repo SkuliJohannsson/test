@@ -1,0 +1,167 @@
+
+
+#Impress your friends
+d/get enter 	delete all to next occurrance of 'get' (global)
+3:		run Ex command on curent line and the next 2
+
+
+
+#practical
+dap      delete a paragraph
+gU       make motion text uppercase
+gu       make motion text lowercase
+dd       delete {count} lines
+>>       shift {count} lines to the right
+<<       shift {count} lines to the left
+==       autoshift {count} lines
+cc       change {count} lines
+!!       filter {count} lines through the shell
+zz       adjust screen so point in vmiddle 
+gr      replace  virtual char
+gR      replace virtual chars
+viw     select inner word
+gv      select last visual selection
+o       v_go to other end of visual selction
+gUit    change inner gat |<|a href='#'>abc</a>=><a href='#'>ABC<a/>
+yypVr-  Add lots of - under current line
+$ C-v jj$A; esc  v_Add ; to end of line and next 2 lines using visual blodk mode
+A;j.j.     Add ; to end of line and next 2 lines using normal mode
+:3d enter, 3Gdd        Delete line 3 in file
+:%d        delete all
+:.,$d, dG       delete this line and all following
+C-o     go to previous (mouse) mark
+C-i     forward in (mouse) mark ring
+:t$ enter    copy line to bottom
+:m0 enter    move line to top
+@:           repeat the last Ex command
+jVG:norm . enter   v_run . on all lines below current, using visual line mode
+:%norm A;     add ; at the end of all lines using Ex comm mode
+@@            repeate last macro count times
+C-d           c_Reveal list of possible commands in Ex mode
+C-r C-w       c_insert word under the cursor while in command mode
+:%s// c-r c-w /g       replace last search pattern (* for example) with the word under the cursor, everywhere
+q/    Open search history window ( can edit stuff )
+q:    Open command history window ( can edit stuff )
+#ctrl-f    c_Open command history window from command mode( can edit stuff )
+
+#practical vim - ch 6,  manage multiple files, vimcasts 7 and 9
+:ls enter, :files enter, :buffers enter       show all buffers
+:C-^, C-6  edit the alternative file
+:bn  go to [n]th next buffer
+:bN, bp    Go to [n]th previous buffer
+:bf     go to first buffer
+:bl      go to last buffer 
+:b 2           go to buffer 2
+:b a          go to buffer whose name bagins with 'a'
+#:bufdo - need an example, and pv says he usually likes :argdo better
+:bd       delete current buffer - pv doesn't really use it though, doesn't like the lack of flexibility with buffers
+:args     show argument list
+:args **/*.js   Set args list to all js files reqursively ( all files under :!pwd ) 
+:next, :n       next in args list
+:prev           prev in args list
+#need argdo example
+:edit!      discard changes
+:argdo write save all with argdo ( another possibility is :wall ) ( see 'hidden', having 'hidden' as false can make argdo a little clumbsy )
+C-w s        split window horizontally
+C-w v, C-w C-v        split window vertically
+:split x, :sp x     split window horizontally and open file x into the new window
+C-w n, C-w C-n      Open new empty buffer horizontally
+:vsplit x, vs x    split window vertically and open file x into the new window
+C-w w, C-w C-w      cycle through windows ( mouse also ok here )
+C-w l, C-w C-l      focus window to the right ( mouse also ok here )
+:cl, :close         close active window
+:on, :only          close all window except the active one
+C-w =               equalize height and widtoh of all windows
+C-w _               maximize height of active window ( [n] sets the actual height )
+C-w |               maximize width of active window ( [n] sets the actual width )
+#look at vimcasts.org/e/7 and 9
+#look at lcd and windo lcd, episode 9. Read from bls 90 as well.
+
+#practical vim - ch 7, open files and save them to disk, vim cast 14, 15
+:pwd       print working directory
+:e %:h tab x     open file x from the same directory as the current buffer
+:set path+=x/**  Add to path all from the relative path x.
+:find x          Open file /abc/def/x assuming path is set nicely
+:vim .           open vim in netrw mode
+-                Netrw: go up one directory
+:e ., :e.        Enter Netrw of the :pwd
+:Explore, :E     Enter Netrw in for the current file directory.
+:Vexplore, :Vex   Open Netrw in vertical window for the current file directory
+:Sexplore, :Sex   Open Netrw in horizontal window for the current file directory
+I                 Netrw: Toggle the way it is viewed
+C-^, C-6          Edit the alternative file ( if you change your mind about what you opened in the Netrw 
+%                 Netrw: new file
+d                 Netrw: new directory
+D                 Netrw: Delete
+r                 Netrw: reverse order
+R                 Netrw: rename/move
+mf                Netrw: mark file/directory
+#The Netrw killer feature: read write across a network. See :h netrw-ref
+C-g               Echo name/status of buffer
+:!mkdir -p %:h    Create directories for just made buffer, if needed
+#:w !sudo tee % > /dev/null          force save, even if sudo is needed. Don't understand how this works, so I just comment it out.
+
+#practical vim - chapter 8
+#h: motion.txt is good. Learn a couple of motions each week at least, he says.
+fx	to next x (current line)
+fx;	to second next x (current line)
+dt;	delete to ; (current line)
+,	you repeated the last char search one too often. What to do?
+d/get enter 	delete all to next occurrance of 'get' (global) - impressive move
+
+#pv - Chapter 8 - text objects - the scissor kick of vim
+dab, da(, da)	(a|bc)=>|
+diBx esc, d{x esc, di}x esc	{a|bc}=>{x|}
+ci"# esc citch esc	<a href="{u|rl}">{title}</a> => <a href="#">ch|</a>
+daw	del curront word from sentence
+ciwx esc	change current word to x
+
+#pv - Chapter 9 - Navigate between files with jumps
+:jumps		show jump list
+C-o		go to previous position in jump list
+C-i		go to newer position in jump list
+:changes	show change list ( buffer wide )
+g;		go to previous change in change list
+g,		go to newer change in change list
+`.		got to last change
+
+#pv - chapter 9 - extra helpful
+gi		go to where you last were in insert mode
+gf 		go to file under cursor(or selected text). Super helpful, but often requires some setup to really shine. Need to maybe add stuff to suffixesadd and path variables. A wormhole feature.
+C-]		also a super wormhole feature but often needs some setup
+`V		go to global mark V ( may be .vimrc as an example ) - saved between sessions
+mV		set global mark V (.vimrc maybe)
+
+#pv - Chapter 10 - registers
+F xp	Practica lvi|m => Practical| vim
+#ddp	move line down
+yyp	copy line down
+"0p	paste from yank register
+_	black hole register
+:reg ab	see contents of registers a and b
+"+p	paste to system clipboard register
+#"*	X11 primary register, used with middle mouse button
+%	Current file name register
+#	Alternate file name register
+/	last search pattern register
+viwp	paste over current word using visual (try pasting again, and the visual content is now there)
+C-r 0	i_paste from yank register - sometimes intuitive for short texts
+gP	paste before, place cursor in front. - can be very useful when copying many lines at once.
+
+#practical vim command line
+!G!sort enter, :.,$!sort enter   sort lines from the current one and down
+!%w !grep x enter    write to command line all lines in vim file containing the letter x
+:!firefox % enter    open current file in firefox
+:r !ls enter   read ls into file
+
+
+
+#Practical but seemingly less important
+c-k 12     i_add ½
+ga      show code of char under cursor
+f.R, b esc     |A|bc a. Ball.=>Abc a, |b|all.
+`.	to last change
+'.	to beginning of line of last change
+``	position befor last jump (jumpa is a confusing concept, not sure of difference with ctrl-o)
+''	to beginning of line of the position before last jump ( jump is a confusiong concept )
+

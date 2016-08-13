@@ -1,0 +1,34 @@
+#Irssi
+/quit	quit
+/help	help
+/connect x	connect x
+/disconnect x	disconnect from x
+ctrl+x	switch network
+alt+2	switch to window 2
+/save	save settings
+/c	clear
+/j x	join x
+/part x	part from channel
+/nick x set nit to x
+/run x.pl	run script x.pl
+alt+n	scroll down half a page
+alt+p	scroll up half a page
+ctrl+n	goto next window
+ctrl+p	goto previous window
+#/wc	close window. Doesn't always work
+#Big channels; freenode, rizon, ircnet, efnet
+
+#All or most channels
+/quote help	show help
+
+#IRCnet
+/squery alis help examples	show alis examples
+/squery alis list * -min 10 show lists with min 10 users
+/squery alis list * -t http	show lists with http in topic
+
+#EFNet
+/list >2	list channels with over 2 users
+/quote help list	show help for list
+
+#Rizon
+#/list >2,*x*	show lists with more than 2 users, and whose topic includes x

@@ -7,7 +7,10 @@ var speak = require("node-speak");
 var timer=require('./timer');
 var op = require('./options');
 var f2j =  require('./fileFormat2Json');
+var f2c =  require('./format2comboKeysFormat');
 var angular = require('angular');
+
+var state={lastComboIndex:''}
 
 $(function(){
  
@@ -104,23 +107,10 @@ $.get("shortcuts/"+op.testFile, function(data){
 		timer.time();
 		testKeyMaps(chapter, callback);
 	}
-	function toCombokeysFormat(keys){
-		return keys.toLowerCase()
-		.replace(/c[-+]/g,"ctrl+")
-		.replace(/m[-+]/g,"alt+")
-		.replace(/shft[-+]/g,"shift+")
-		.replace(/s[-+]/g,"shift+")
-		//On windows: goes to ctrl unfortunately
-		.replace(/w[-+]/g,"mod+")
-		.replace(/spc/g,"space")
-	    //some horrible hacks
-		.replace(/%/g,"shift+5")
-		.split(", ");
-	}
-	
+
 	function testKeyMaps(data, callback){
 	    
-		var current = _.sample(data.lines);
+		var current = sample(data.lines);
 		if(timer.timeShow()<op.time)
 		{
 			if(op.learnMode) 
@@ -130,8 +120,8 @@ $.get("shortcuts/"+op.testFile, function(data){
 		    if(op.speak) speak(current.message);
 
 			if(op.debug) 
-				console.log(toCombokeysFormat(current.keys));
-			var combo=toCombokeysFormat(current.keys);
+				console.log(f2c.parse(current.keys));
+			var combo=f2c.parse(current.keys);
 			timer.time(combo);
 			ck.bind(combo, function(event){ 
 				event.preventDefault();
@@ -158,6 +148,16 @@ $.get("shortcuts/"+op.testFile, function(data){
 		}
 	}
 	
+	function sample(lines){
+		if(lines.length<=1) return lines[0];
+		var currentIndex = _.random(0, lines.length-2);
+		var last = state.lastComboIndex 
+		if(currentIndex!=last){
+			state.lastComboIndex=currentIndex;
+			return lines[currentIndex];
+		}
+		return lines[currentIndex];
+	}
 	function setTitle(title){
 		$('title').html(title);
 	}

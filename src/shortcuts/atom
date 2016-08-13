@@ -1,0 +1,17 @@
+#basic
+ctrl-shift-p  show shortcuts [ search by shortcut doesn't work unfortunately ]
+ctrl-d  find and replace occurrences
+ctrl-up move line up
+ctrl-] indent line
+ctrl-,  open settings [ good to find key bindings by shortcut ]
+#ctlr-leftclick multi cursor
+shift-alt-down  multi cursor down
+ctrl-/  toggle comment
+ctrl-j  join this line and next line
+ctrl-enter  new line below
+ctrl-shift-enter  new line above
+ctrl-o  open File
+ctrl-n  new file
+
+#atom-terminal
+ctrl-shift-t, alt-shift-t open terminal on current file's directory

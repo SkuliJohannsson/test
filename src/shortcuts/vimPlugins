@@ -1,0 +1,19 @@
+
+#Unimpaired
+[e      move line [count] up
+]e      move line [count] down
+[b      :bN
+]b      :bn
+[B      :bf
+]B      :bl
+
+#Surround
+ysiw'	abc => 'abc'
+cs"'	"abc" => 'abc'
+
+#Ultisnips
+:h Ul tab tab, h: UltiSnips	UltiSnips: open help
+:Ul tab tab, :UltiSnips	open snippet file
+c-j	UltiSnips: advance to next tabstop
+c-k	UltiSnips: advance to previous tabstop
+tab	UltiSnips: expand trigger

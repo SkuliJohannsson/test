@@ -1,0 +1,32 @@
+exports.parse=function(keys){
+	keys = _putSpaceBetween(keys);
+	keys = keys.replace(/c[-+]/g,"ctrl+")
+	.replace(/m[-+]/g,"alt+")
+	.replace(/shft[-+]/g,"shift+")
+	.replace(/s[-+]/g,"shift+")
+	//On windows: goes to ctrl unfortunately
+	.replace(/w[-+]/g,"mod+")
+	.replace(/spc/g,"space")
+	//some horrible hacks
+	.replace(/%/g,"shift+5")
+	.split(", ");
+	return keys;
+}
+
+var _putSpaceBetween = function(keys){
+	keys=keys.split(' ');
+
+	for(var i=0; i<keys.length;i++){
+		if(!_includesControlChar(keys[i])){
+			keys[i]=keys[i].split('').join(' ')
+			.replace("  ", " ");
+		}
+	}
+	return keys.join(' ');
+}
+
+var _includesControlChar = function(key){
+	//assume that if it has but doesn't end with + or - then it includes control char
+	var searchPosition= key.search(/[+-]/g);
+	return searchPosition<key.length&&searchPosition>=0;
+}

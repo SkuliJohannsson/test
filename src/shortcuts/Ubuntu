@@ -1,4 +1,14 @@
-Ctrl+alt+right	window to right
-Ctrl+shift+right	move selected thing to the right woindows
-shift+space	toggle language
+#Ubuntu
+Ctrl+alt+right workspace to right
+Ctrl+alt+shift+right	move selected thing to the right workspace
+super+space	toggle language
 ctrl+alt+t	open terminal
+super+ctrl+right	let a window take half the screen to the right
+#ctrl+alt+9 (numpad)	set window to upper right 
+super	show shortcuts
+alt+tab	toggle programs
+alt+`	toggle programs
+super+w	show all workspaces
+super+shift+w	show all windows
+super+1 open launcher icon 1
+super+shift+1	open new from launcher icon 1

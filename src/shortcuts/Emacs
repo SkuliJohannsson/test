@@ -3,6 +3,7 @@ C-h c		describe-key-briefly
 C-h k		describe-key
 C-h a		apropos-command
 C-h f		describe-function
+
 #M-x f i n d - f u n c t i o n		find-function
 C-h v		describe-variable
 C-h i		info page
@@ -23,6 +24,7 @@ C-x C-f C-f             create new file when ido-mode is on
 C-x C-e                 Evaluate the Emacs Lisp expression before point.
 #M-x set-variable RET var RET value RET
 M-:                       eval lisp function in minibuffer
+M-x clipboard-yank
 
 #ido-mode
 C-x C-f C-f                     create new file
@@ -72,7 +74,7 @@ c-/		undo
 C-x 1		delete-other-windows
 M-C-v		scroll-other-window
 M-h		mark-paragraph
-M-x o		other-window
+C-x o		other-window
 C-x C-v enter	reload buffer
 
 #Buffers

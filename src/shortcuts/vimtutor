@@ -1,0 +1,42 @@
+#Vimtutor 1
+x		delete char
+a		insert after cursors
+y		yank
+i		insert before cursor
+A		append to line
+dw		delete to start of next word
+de		delete to end of current word
+d$		delete to end of line
+$ 		to end of line
+w		to start of next word
+e		to end of current word
+
+#vimtutor 2
+3w		to 3rd word (beginning)
+0 		to beginning of line
+dd		delete line
+u 		undo
+U		undo line changes
+ctrl+o		previous location
+ctrl+i		next location
+?x		search for x backwards
+n 		next search forward
+N		previous search backwards
+p    	  	paste from clipboard last del
+
+vimtutor 3
+ra		replace char with 'a'
+ce		delete word to end and put in insert mode
+ctrl+g		show location and status
+gg		start of file
+G		end of file
+3G		goto line 3
+% 		goto mathcin { [ or (
+:s/a/b/g	replace first a with b in line
+:!	     	execute external command
+ctrl+d		show possible commands
+shift+]		next paragraph
+
+#conflicts with browser
+ctrl+w ctrl+w	switch window
+/x		search for x

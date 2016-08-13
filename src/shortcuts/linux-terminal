@@ -1,0 +1,18 @@
+#bash
+ctrl-z  back to terminal
+fg      back to program
+ctrl-alt-f1  to virtual first console (prov by getty/agetty)
+ctrl-alt-f7, ctrl-alt-f8      to console with x server ( prov by getty/agetty)
+sudo powerof                  power off
+sudo reboot                   reboot
+ctrl-d                        close terminal
+jobs                          show list of jobs
+pwd                           print working directory
+whoami                        Current user name
+chmod u+x x			Make file x executable
+ctrl-\				kill program
+ctrl-r				search history
+cd -				goto last directory
+
+#Need external programs
+tree print tree of .

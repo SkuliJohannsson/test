@@ -1,0 +1,6 @@
+f1	goto link 1
+F1	goto lin 1 in a new tab
+:help	help
+/	search on page
+C-u	up half a screen
+C-d	down half a screen
